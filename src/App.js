@@ -1,29 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 let Survey = require('survey-react');
+// import $ from 'jquery';
+
+
+var survey = new Survey.Model({
+    title: "", showProgressBar: "bottom", goNextPageAutomatic: true, showNavigationButtons: false,
+    pages: [
+        {questions: [
+            { type: "dropdown",  renderAs: "imagepicker", name: "question", title: "", choicesOrder: "random", 
+              choices: [
+                {value: "lion", text: "images/image1.gif"},
+                {value: "giraffe", text: "images/image1.gif"},
+              ]}
+        ]},
+        {questions: [
+            { type: "dropdown",  renderAs: "imagepicker", name: "question", title: "", choicesOrder: "random", 
+              choices: [
+                {value: "lion", text: "images/image1.gif"},
+                {value: "giraffe", text: "images/image1.gif"},
+              ]}
+        ]},
+
+
+    ],
+    completedHtml: '<h2>Thankyou for taking the survey.</h2>'
+});
+
 
 Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
 Survey.Survey.cssType = "bootstrap";
-var survey = new Survey.Model( { questions: [
-     {name:"name", type:"text", title: "Please enter your name:", placeHolder:"Jon Snow", isRequired: true},
-     {name:"birthdate", type:"text", inputType:"date", title: "Your birthdate:", isRequired: true},
-     {name:"color", type:"text", inputType:"color", title: "Your favorite color:"},
-     {name:"email", type:"text", inputType:"email", title: "Your e-mail:", placeHolder:"jon.snow@nightwatch.org", isRequired: true, validators: [{type:"email"}]}
-]});
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="App-content">
+            <Survey.Survey model={survey} />
+        </div>
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+            <h2>Which room looks bigger?</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+            Click on the image to select your answer.
         </p>
-        <Survey.Survey model={survey} />
       </div>
     );
   }
