@@ -6,5 +6,5 @@ import './index.css';
 
 ReactDOM.render(
   <App />,
-  document.getElementById('surveyElement')
+  document.getElementById('root')
 );
